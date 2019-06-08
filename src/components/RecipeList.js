@@ -12,10 +12,7 @@ const RecipeList = props => (
           onClick={() => props.onClick(recipe.id)}
         >
           <span>{recipe.name}</span>
-          <span>
-            {' '}
-            {recipe.category}
-          </span>
+          <span> {recipe.category}</span>
         </li>
       ))}
     </ul>
@@ -23,8 +20,9 @@ const RecipeList = props => (
 );
 
 RecipeList.propTypes = {
-  recipe: PropTypes.object,
-  style: PropTypes.object
+  recipes: PropTypes.object,
+  style: PropTypes.object,
+  onClick: PropTypes.object,
 };
 
 export default RecipeList;
