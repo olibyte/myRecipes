@@ -1,31 +1,42 @@
 import React from 'react';
 
-const RecipeDetail = (props) => (
+const RecipeDetail = (props) => {
+    if (!props.recipe) {
+        return(
+        <p style={props.style}>
+            Please select a recipe to see the detail.
+        </p>
+        );
+    }
+    return (
     <div style={props.style}>
-        <h2>Cupcake</h2>
-        <img src="https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/f/dd7224b7-e4df-494c-a6ed-71ec0489d092/d1hvgzm-fd61dde9-8c0c-408b-82fb-cc7efebab69b.jpg?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1cm46YXBwOjdlMGQxODg5ODIyNjQzNzNhNWYwZDQxNWVhMGQyNmUwIiwiaXNzIjoidXJuOmFwcDo3ZTBkMTg4OTgyMjY0MzczYTVmMGQ0MTVlYTBkMjZlMCIsIm9iaiI6W1t7InBhdGgiOiJcL2ZcL2RkNzIyNGI3LWU0ZGYtNDk0Yy1hNmVkLTcxZWMwNDg5ZDA5MlwvZDFodmd6bS1mZDYxZGRlOS04YzBjLTQwOGItODJmYi1jYzdlZmViYWI2OWIuanBnIn1dXSwiYXVkIjpbInVybjpzZXJ2aWNlOmZpbGUuZG93bmxvYWQiXX0.nKSgjA39MU6e2m6PSIjI-OUtaKBRe7bp5EbOt4h0Ktg"/>
+        <h2>{props.recipe.name}</h2>
+        <img src={props.recipe.image}/>
         <div>
-            <span>Dessert</span>
-            <span>1200 cal</span>
+            <span>{props.recipe.category}</span>
+            <span>{props.recipe.calories}</span>
         </div>
         <h3>Ingredients</h3>
-         <div>
-             <ul>
-        <li>Ingredient 1</li>
-        <li>Ingredient 2</li>
-        <li>Ingredient 3</li>
-         </ul>
-         </div>
+            <ul>
+                {props.recipe.ingredients.map(ingredient => (
+                    <li key={ingredient}>
+                        {ingredient}
+                    </li>
+                ))}
+            </ul>
          
         <h3>Steps</h3>
         <div>
         <ol>
-        <li>Step 1</li>
-        <li>Step 2</li>
-        <li>Step 3</li>
+            {props.recipe.steps.map(step => (
+                <li key={step}>
+                    {step}
+                </li>
+                ))}
         </ol>
         </div>
     </div>
 );
+};
 
 export default RecipeDetail;
