@@ -1,6 +1,8 @@
 import React from 'react';
-import classNames from 'classnames';
 import PropTypes from 'prop-types';
+import { Link } from 'react-router-dom';
+import classNames from 'classnames';
+
 
 const RecipeDetail = props => {
   if (!props.recipe) {
@@ -22,23 +24,38 @@ const RecipeDetail = props => {
       <img className="fit" alt={props.recipe.name} src={props.recipe.image} />
       <div>
         <span>{props.recipe.category}</span>
-        <span> {props.recipe.calories} calories</span>
+        <span>
+          {props.recipe.calories}
+          {' '}
+calories
+        </span>
       </div>
       <h3>Ingredients</h3>
+      {props.recipe.steps
+      && (
       <ul>
-        {props.recipe.ingredients.map(ingredient => (
+        {props.recipe.ingredients.map(ingredients => (
           <li key={ingredient}>{ingredient}</li>
         ))}
       </ul>
-
+      )
+      }
       <h3>Steps</h3>
-      <div>
+      {props.recipe.steps
+        && (
         <ol>
           {props.recipe.steps.map(step => (
             <li key={step}>{step}</li>
           ))}
         </ol>
-      </div>
+        )
+        }
+      <Link
+        to={`/recipe/${props.recipe.id}`}
+        href={`/recipe/${props.recipe.id}`}
+      >
+            See More
+      </Link>
     </div>
   );
 };
